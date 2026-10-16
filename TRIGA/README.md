@@ -1,30 +1,59 @@
-# TRIGA Mark II Reactor Model in OpenMC
+# TRIGA Mark II Reactor — OpenMC Model
 
-This folder contains an OpenMC model of the TRIGA Mark II reactor, developed and validated using experimental data from the TRIGA reactor at the University of Pavia.
+![OpenMC](https://img.shields.io/badge/OpenMC-0.15.2-blue)
+![Python](https://img.shields.io/badge/Python-3.12-blue)
+![Status](https://img.shields.io/badge/status-validated-brightgreen)
 
-# Contents
+Full-core OpenMC model of the **TRIGA Mark II** research reactor of the **University of Pavia** (LENA), developed and validated against experimental data from the facility.
 
-- _triga.ipynb_: Jupyter notebook containing the full workflow for setting up, running, and analyzing the TRIGA Mark II reactor simulation using OpenMC.
+---
 
-# Description
+## 📂 Contents
 
-The model simulates the TRIGA Mark II research reactor using the Monte Carlo particle transport code OpenMC. It includes core geometry, material definitions, simulation parameters, and post-processing tools. The model has been verified and validated against experimental benchmarks, including:
+| File | Description |
+|------|-------------|
+| [`triga.ipynb`](triga.ipynb) | Complete workflow: materials, geometry, plots, settings, tallies, run. |
 
-- Criticality (keff) at various configurations
+## ⚛️ Model overview
+
+- **Materials** — UZrH fuel (elements 101 and 103), samarium burnable poison disks, graphite reflector, aluminium and steel claddings, light water with S(α,β) thermal scattering.
+- **Geometry** — full core with the circular fuel lattice, central channel, the three control rods (**SHIM**, **REG**, **TRANS**), graphite dummy elements, rabbit and source channels, radial graphite reflector with its irradiation channels.
+- **Control rods** — positions are set at the top of the geometry section (`z0_shim_value`, `z0_reg_value`, `z0_trans_value`; 0 = fully inserted, 47 = fully withdrawn).
+- **Void studies** — the `void_water` flag fills the central-channel case with water or void.
+- **Tallies** — neutron energy spectrum (100 log-spaced groups, 10⁻⁵ eV – 20 MeV), 3D flux map on a 60×60×100 mesh, and deposited energy for power normalisation.
+- **Settings** — 300 batches (100 inactive) × 120 000 particles, uniform initial source, temperature interpolation.
+
+Reference result (rods at 45 cm): **k<sub>eff</sub> = 1.05004 ± 0.00022**.
+
+## ▶️ How to run
+
+1. Install [OpenMC](https://docs.openmc.org/en/stable/quickinstall.html) (tested with **v0.15.2**) and a nuclear data library, then point `OPENMC_CROSS_SECTIONS` to its `cross_sections.xml`.
+2. Open the notebook and run all cells:
+   ```bash
+   jupyter notebook triga.ipynb
+   ```
+3. The XML inputs and the `statepoint.300.h5` output are written next to the notebook; geometry plots go to `pictures/geometry/`.
+
+> A full run takes roughly 10 minutes on a modern workstation.
+
+## ✅ Validation
+
+The model has been verified and validated against experimental benchmarks of the Pavia TRIGA reactor:
+
+- Criticality (k<sub>eff</sub>) at different control-rod configurations
 - Temperature reactivity coefficients
 - Void reactivity coefficients
 
-Additionally, the notebook includes analysis supporting the study of neutron flux shadowing effects, with simplified and full-core modeling approaches.
+It also supports the study of **neutron flux shadowing effects**, with simplified and full-core modelling approaches.
 
-# Validation References
+## 📚 References
 
-The TRIGA OpenMC model has been validated through comparison with experimental and benchmark data published in the following peer-reviewed works:
+1. 📘 *OpenMC Model Validation of the TRIGA Mark II Reactor* — [ResearchGate](https://www.researchgate.net/publication/377526674)
+2. 🌡️ *OpenMC Analysis of TRIGA Mark II Reactor Void and Temperature Reactivity Coefficients* — [ResearchGate](https://www.researchgate.net/publication/377489898)
+3. 🌀 *Shadowing Effect Correction for the Pavia TRIGA Reactor Using Monte Carlo Data and Reduced Modelling Techniques* — [ResearchGate](https://www.researchgate.net/publication/384146956)
 
-📘 _OpenMC Model Validation of the TRIGA Mark II Reactor_ https://www.researchgate.net/publication/377526674
+If you use this model in your work, please cite the relevant papers above.
 
-🌡️ _OpenMC Analysis of TRIGA Mark II Reactor Void and Temperature Reactivity Coefficients_
-https://www.researchgate.net/publication/377489898
+---
 
-🌀 _Shadowing Effect Correction for the Pavia TRIGA Reactor Using Monte Carlo Data and Reduced Modelling Techniques_
-https://www.researchgate.net/publication/384146956
-
+<sub>Originally published in [MP-OFELIA](https://github.com/ERMETE-Lab/MP-OFELIA). Developed at [ERMETE-Lab](https://github.com/ERMETE-Lab), Politecnico di Milano.</sub>

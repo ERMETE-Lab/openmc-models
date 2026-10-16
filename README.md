@@ -12,7 +12,7 @@ Each model lives in its own folder, with a notebook to build, run and post-proce
 
 ## Requirements
 
-- [OpenMC](https://docs.openmc.org/en/stable/quickinstall.html) with a nuclear data library (set `OPENMC_CROSS_SECTIONS`)
+- [OpenMC](https://docs.openmc.org/en/stable/quickinstall.html) (tested with v0.15.2) with a nuclear data library (set `OPENMC_CROSS_SECTIONS`)
 - Python 3 with `numpy` and Jupyter
 
 ## History
