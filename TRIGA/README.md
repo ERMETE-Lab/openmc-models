@@ -1,10 +1,10 @@
 # TRIGA Mark II Reactor Model in OpenMC
 
-This repository contains an OpenMC model of the TRIGA Mark II reactor, developed and validated using experimental data from the TRIGA reactor at the University of Pavia.
+This folder contains an OpenMC model of the TRIGA Mark II reactor, developed and validated using experimental data from the TRIGA reactor at the University of Pavia.
 
-# Repository Contents
+# Contents
 
-- _triga_model.ipynb_: Jupyter notebook containing the full workflow for setting up, running, and analyzing the TRIGA Mark II reactor simulation using OpenMC.
+- _triga.ipynb_: Jupyter notebook containing the full workflow for setting up, running, and analyzing the TRIGA Mark II reactor simulation using OpenMC.
 
 # Description
 
@@ -14,7 +14,7 @@ The model simulates the TRIGA Mark II research reactor using the Monte Carlo par
 - Temperature reactivity coefficients
 - Void reactivity coefficients
 
-Additionally, the repository includes analysis supporting the study of neutron flux shadowing effects, with simplified and full-core modeling approaches.
+Additionally, the notebook includes analysis supporting the study of neutron flux shadowing effects, with simplified and full-core modeling approaches.
 
 # Validation References
 
